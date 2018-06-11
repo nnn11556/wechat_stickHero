@@ -56,7 +56,7 @@ def handle_img(path):
     start_index = 0
     count = 0
     #忽略左侧小人脚下的红点
-    for index, px in enumerate(img_cv[1383, int(0.1*WIDTH):]):
+    for index, px in enumerate(img_cv[int(0.72*HEIGHT), int(0.1*WIDTH):]):
         if px[0] == 0 and px[1] == 0 and px[2] == 204:  # red
             if count == 0:
                 start_index = index+int(0.1*WIDTH)
@@ -94,6 +94,10 @@ def move(x1,x2):
     os.system(cmd)
 
 def main():
+    cheak = input('请确保手机已打开USB调试并连接电脑[y/n]:')
+    while True:
+        if cheak.lower() == 'y':
+            break
     times = 0
     while True:
         try:
@@ -107,6 +111,6 @@ def main():
         except:
             saveBugImg()
             break
-
+    cv2.waitKey(0)
 if __name__ == '__main__':
     main()
